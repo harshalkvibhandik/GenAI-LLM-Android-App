@@ -34,7 +34,6 @@ android {
 
         // Set API keys in BuildConfig
         buildConfigField "String", "OPENAI_API_KEY", "\"${properties.getProperty("OPENAI_API_KEY")}\""
-        buildConfigField "String", "GITHUB_PROFILE", "\"${properties.getProperty("GITHUB_PROFILE")}\""
     }
 
     buildTypes {

@@ -189,7 +189,8 @@ class ConversationViewModel @Inject constructor(
             conversations.remove(conversationToRemove)
             _conversations.value = conversations
         }
-        messageRepo.deleteMessage()
+        // App is crashing on below line needs to provide fix
+        // messageRepo.deleteMessage()
     }
 
     suspend fun deleteConversation(conversationId: String) =
