@@ -60,10 +60,10 @@ fun AppBar(onClickMenu: () -> Unit) {
                         },
                     ) {
                         Icon(
-                            Icons.Filled.Menu,
-                            "backIcon",
+                            imageVector = Icons.Filled.Menu,
+                            contentDescription = stringResource(id = R.string.cd_open_drawer),
                             modifier = Modifier.size(26.dp),
-                            tint = MaterialTheme.colorScheme.primary,
+                            tint = Color.White,
                         )
                     }
                 },

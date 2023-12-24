@@ -26,11 +26,9 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Message
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material.icons.outlined.AddComment
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -57,6 +55,7 @@ import com.race2innovate.genai.constants.urlToGithub
 import com.race2innovate.genai.helpers.UrlLauncher
 import com.race2innovate.genai.models.ConversationModel
 import com.race2innovate.genai.ui.conversations.ConversationViewModel
+import com.race2innovate.genai.ui.theme.Blue150
 import kotlinx.coroutines.launch
 
 
@@ -129,10 +128,14 @@ private fun AppDrawerIn(
         )
         DividerItem(modifier = Modifier.padding(horizontal = 28.dp))
         DrawerItemHeader(stringResource(id = R.string.settings))
-        ChatItem("Settings", Icons.Filled.Settings, false) { onChatClicked("Settings") }
+        ChatItem(
+            stringResource(id = R.string.settings),
+            Icons.Filled.Settings,
+            false
+        ) { onChatClicked("Settings") }
         ProfileItem(
             stringResource(id = R.string.author_name),
-            R.drawable.icons_github,
+            R.drawable.icon_github,
         ) {
             UrlLauncher().openUrl(context = context, urlToGithub)
         }
@@ -174,8 +177,9 @@ private fun DrawerHeader(
                 )
             }
         }
-
-        IconButton(
+        // This used to shuffle in between dark and light themes
+        // It can be enabled later once UI gets stable for specific themes
+        /*IconButton(
             onClick = {
                 clickAction.invoke()
             },
@@ -186,7 +190,7 @@ private fun DrawerHeader(
                 modifier = Modifier.size(26.dp),
                 tint = MaterialTheme.colorScheme.primary,
             )
-        }
+        }*/
     }
 }
 
@@ -268,9 +272,9 @@ private fun ChatItem(
         verticalAlignment = CenterVertically
     ) {
         val iconTint = if (selected) {
-            MaterialTheme.colorScheme.primary
+            Color.White
         } else {
-            MaterialTheme.colorScheme.onSurfaceVariant
+            Color.White
         }
         Icon(
             icon,
@@ -284,9 +288,9 @@ private fun ChatItem(
             text,
             style = MaterialTheme.typography.bodyMedium,
             color = if (selected) {
-                MaterialTheme.colorScheme.primary
+                Color.White
             } else {
-                MaterialTheme.colorScheme.onSurface
+                Color.White
             },
             modifier = Modifier.padding(start = 12.dp),
             maxLines = 1,
@@ -304,7 +308,7 @@ private fun RecycleChatItem(
     onDeleteClicked: () -> Unit
 ) {
     val background = if (selected) {
-        Modifier.background(MaterialTheme.colorScheme.primaryContainer)
+        Modifier.background(Blue150)
     } else {
         Modifier
     }
@@ -325,36 +329,38 @@ private fun RecycleChatItem(
         }
         Icon(
             icon,
-            tint = iconTint,
+            tint = Color.White,
             modifier = Modifier
-                .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
-                .size(25.dp),
+                .padding(start = 16.dp)
+                .size(24.dp),
             contentDescription = null,
         )
         Text(
             text,
             style = MaterialTheme.typography.bodyMedium,
             color = if (selected) {
-                MaterialTheme.colorScheme.primary
+                Color.White
             } else {
-                MaterialTheme.colorScheme.onSurface
+                Color.White
             },
             modifier = Modifier
-                .padding(start = 12.dp)
-                .fillMaxWidth(0.85f),
+                .padding(start = 16.dp, end = 16.dp)
+                .fillMaxWidth(0.80f),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
-        Spacer(Modifier.weight(0.9f, true))
         Icon(
             imageVector = Icons.Filled.Delete,
-            contentDescription = "Delete",
+            contentDescription = stringResource(id = R.string.cd_delete_chat),
             tint = if (selected) {
-                MaterialTheme.colorScheme.primary
+                Color.White
             } else {
-                MaterialTheme.colorScheme.onSurface
+                Color.White
             },
-            modifier = Modifier.clickable { onDeleteClicked() }
+            modifier = Modifier
+                .padding(end = 16.dp)
+                .size(24.dp)
+                .clickable { onDeleteClicked() }
         )
     }
 }
