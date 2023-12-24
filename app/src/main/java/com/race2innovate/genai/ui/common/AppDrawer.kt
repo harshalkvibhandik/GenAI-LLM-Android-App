@@ -60,6 +60,7 @@ import com.race2innovate.genai.models.ConversationModel
 import com.race2innovate.genai.ui.conversations.ConversationViewModel
 import com.race2innovate.genai.ui.theme.iconColorDark
 import com.race2innovate.genai.ui.theme.primary
+import com.race2innovate.genai.ui.theme.secondary
 import com.race2innovate.genai.ui.theme.textColorDark
 import kotlinx.coroutines.launch
 
@@ -267,7 +268,7 @@ private fun ChatItem(
     onChatClicked: () -> Unit
 ) {
     val background = if (selected) {
-        Modifier.background(MaterialTheme.colorScheme.primaryContainer)
+        Modifier.background(MaterialTheme.colorScheme.secondary)
     } else {
         Modifier
     }
@@ -314,7 +315,7 @@ private fun RecycleChatItem(
     onDeleteClicked: () -> Unit
 ) {
     val background = if (selected) {
-        Modifier.background(primary)
+        Modifier.background(secondary)
     } else {
         Modifier
     }

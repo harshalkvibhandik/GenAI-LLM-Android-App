@@ -8,7 +8,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -18,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.race2innovate.genai.R
-import com.race2innovate.genai.ui.theme.backgroundDark
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,9 +27,6 @@ fun AppBar(onClickMenu: () -> Unit) {
     ) {
         CenterAlignedTopAppBar(
             title = {
-                val paddingSizeModifier = Modifier
-                    .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
-                    .size(32.dp)
                 Box {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Image(
@@ -66,9 +61,11 @@ fun AppBar(onClickMenu: () -> Unit) {
                     )
                 }
             },
-            colors = TopAppBarDefaults.smallTopAppBarColors(
-                containerColor = backgroundDark,
-                titleContentColor = Color.White,
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                titleContentColor = MaterialTheme.colorScheme.tertiary,
+                navigationIconContentColor = MaterialTheme.colorScheme.onTertiary,
+                actionIconContentColor = MaterialTheme.colorScheme.onTertiary
             ),
         )
     }

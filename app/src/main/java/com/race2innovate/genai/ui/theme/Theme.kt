@@ -20,10 +20,13 @@ private val darkColorScheme = darkColorScheme(
     secondary = secondary,
     tertiary = textColorDark,
     onTertiary = iconColorDark,
+    onPrimary = humanMessageTextColorDark,
+    onSecondary = botMessageTextColorDark,
     background = backgroundDark,
-    surface = messageBackgroundHumanDark,
-    surfaceVariant = messageBackgroundGPTDark,
-    primaryContainer = primaryContainer
+    outline = outlineDark,
+    surface = humanMessageBackgroundDark,
+    surfaceVariant = botMessageBackgroundDark,
+    primaryContainer = appBarBackgroundDark
 )
 
 private val lightColorScheme = lightColorScheme(
@@ -31,10 +34,13 @@ private val lightColorScheme = lightColorScheme(
     secondary = secondary,
     tertiary = textColorLight,
     onTertiary = iconColorLight,
+    onPrimary = humanMessageTextColorLight,
+    onSecondary = botMessageTextColorLight,
     background = backgroundLight,
-    surface = messageBackgroundHumanLight,
-    surfaceVariant = messageBackgroundGPTLight,
-    primaryContainer = primaryContainer
+    outline = outlineLight,
+    surface = humanMessageBackgroundLight,
+    surfaceVariant = botMessageBackgroundLight,
+    primaryContainer = appBarBackgroundLight
 )
 
 @Composable
