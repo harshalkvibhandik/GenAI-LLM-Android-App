@@ -16,7 +16,7 @@ import androidx.core.view.WindowCompat
 import com.race2innovate.genai.ui.common.AppBar
 import com.race2innovate.genai.ui.common.AppScaffold
 import com.race2innovate.genai.ui.conversations.Conversation
-import com.race2innovate.genai.ui.theme.ChatGPTLiteTheme
+import com.race2innovate.genai.ui.theme.GenAILLMTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
                     val darkTheme = remember(key1 = "darkTheme") {
                         mutableStateOf(true)
                     }
-                    ChatGPTLiteTheme(darkTheme.value) {
+                    GenAILLMTheme(darkTheme.value) {
                         Surface(
                             color = MaterialTheme.colorScheme.background,
                         ) {
@@ -110,6 +110,6 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    ChatGPTLiteTheme {
+    GenAILLMTheme {
     }
 }

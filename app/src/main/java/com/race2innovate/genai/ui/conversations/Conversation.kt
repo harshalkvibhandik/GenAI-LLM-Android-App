@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,7 +20,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -34,25 +34,22 @@ import com.race2innovate.genai.constants.conversationTestTag
 import com.race2innovate.genai.models.MessageModel
 import com.race2innovate.genai.ui.conversations.components.MessageCard
 import com.race2innovate.genai.ui.conversations.components.TextInput
-import com.race2innovate.genai.ui.conversations.ui.theme.ChatGPTLiteTheme
-import com.race2innovate.genai.ui.theme.BackGroundColor
+import com.race2innovate.genai.ui.theme.GenAILLMTheme
 
 @Composable
 fun Conversation() {
-    ChatGPTLiteTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = BackGroundColor,
-        ) {
-            Box(Modifier.fillMaxSize()) {
-                Column(Modifier.fillMaxSize()) {
-                    MessageList(
-                        modifier = Modifier
-                            .weight(1f)
-                            .padding(start = 16.dp, end = 16.dp)
-                    )
-                    TextInput()
-                }
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        Box(Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize()) {
+                MessageList(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 16.dp, end = 16.dp)
+                )
+                TextInput()
             }
         }
     }
@@ -90,14 +87,14 @@ fun MessageList(
                         .padding(bottom = 16.dp),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.tertiary
                 )
                 Text(
                     stringResource(id = R.string.start_chatting_hint),
                     modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Normal,
-                    color = Color.White
+                    color = MaterialTheme.colorScheme.tertiary
                 )
             }
         }
@@ -159,7 +156,7 @@ fun MessageList(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview2() {
-    ChatGPTLiteTheme {
+    GenAILLMTheme {
 //        Greeting2("Android")
     }
 }

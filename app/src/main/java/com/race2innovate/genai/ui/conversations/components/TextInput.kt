@@ -65,7 +65,8 @@ private fun TextInputIn(
                         placeholder = {
                             Text(
                                 stringResource(id = R.string.type_a_new_question_hint),
-                                fontSize = 12.sp
+                                fontSize = 12.sp,
+                                color = MaterialTheme.colorScheme.tertiary
                             )
                         },
                         shape = RoundedCornerShape(25.dp),
@@ -90,7 +91,7 @@ private fun TextInputIn(
                             Icons.Outlined.Send,
                             "sendMessage",
                             modifier = Modifier.size(26.dp),
-                            tint = Color.White,
+                            tint = MaterialTheme.colorScheme.onTertiary
                         )
                     }
                 }

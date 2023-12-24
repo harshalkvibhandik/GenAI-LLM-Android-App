@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,11 +26,9 @@ import com.halilibo.richtext.ui.RichText
 import com.halilibo.richtext.ui.RichTextStyle
 import com.halilibo.richtext.ui.material3.SetupMaterial3RichText
 import com.race2innovate.genai.models.MessageModel
-import com.race2innovate.genai.ui.theme.BackGroundMessageGPT
-import com.race2innovate.genai.ui.theme.BackGroundMessageHuman
-import com.race2innovate.genai.ui.theme.ChatGPTLiteTheme
-import com.race2innovate.genai.ui.theme.ColorTextGPT
-import com.race2innovate.genai.ui.theme.ColorTextHuman
+import com.race2innovate.genai.ui.theme.GenAILLMTheme
+import com.race2innovate.genai.ui.theme.messageBackgroundGPTLight
+import com.race2innovate.genai.ui.theme.messageBackgroundHumanLight
 import java.util.Date
 
 @Composable
@@ -45,7 +44,7 @@ fun MessageCard(message: MessageModel, isHuman: Boolean = false, isLast: Boolean
             modifier = Modifier
                 .widthIn(0.dp, 260.dp) //mention max width here
                 .background(
-                    if (isHuman) BackGroundMessageHuman else BackGroundMessageGPT,
+                    if (isHuman) messageBackgroundHumanLight else messageBackgroundGPTLight,
                     shape = RoundedCornerShape(12.dp)
                 ),
         ) {
@@ -63,7 +62,7 @@ fun HumanMessageCard(message: MessageModel) {
     Text(
         text = message.question,
         fontSize = 14.sp,
-        color = ColorTextHuman,
+        color = MaterialTheme.colorScheme.tertiary,
         modifier = Modifier.padding(horizontal = 18.dp, vertical = 12.dp),
         textAlign = TextAlign.Justify,
     )
@@ -71,7 +70,7 @@ fun HumanMessageCard(message: MessageModel) {
 
 @Composable
 fun BotMessageCard(message: MessageModel) {
-    ChatGPTLiteTheme {
+    GenAILLMTheme {
         SetupMaterial3RichText {
             RichText(
                 modifier = Modifier.padding(horizontal = 18.dp, vertical = 12.dp),
@@ -81,7 +80,7 @@ fun BotMessageCard(message: MessageModel) {
                             fontFamily = FontFamily.Default,
                             fontWeight = FontWeight.Normal,
                             fontSize = 13.sp,
-                            color = ColorTextGPT,
+                            color = MaterialTheme.colorScheme.tertiary
                         ),
                         wordWrap = true,
                         modifier = Modifier.background(

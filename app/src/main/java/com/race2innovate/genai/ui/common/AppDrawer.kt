@@ -25,11 +25,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Message
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material.icons.outlined.AddComment
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -38,7 +42,6 @@ import androidx.compose.ui.Alignment.Companion.CenterStart
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -55,7 +58,9 @@ import com.race2innovate.genai.constants.urlToGithub
 import com.race2innovate.genai.helpers.UrlLauncher
 import com.race2innovate.genai.models.ConversationModel
 import com.race2innovate.genai.ui.conversations.ConversationViewModel
-import com.race2innovate.genai.ui.theme.Blue150
+import com.race2innovate.genai.ui.theme.iconColorDark
+import com.race2innovate.genai.ui.theme.primary
+import com.race2innovate.genai.ui.theme.textColorDark
 import kotlinx.coroutines.launch
 
 
@@ -67,27 +72,32 @@ fun AppDrawer(
     onIconClicked: () -> Unit = {}
 ) {
     val coroutineScope = rememberCoroutineScope()
-    AppDrawerIn(
-        onChatClicked = onChatClicked,
-        onNewChatClicked = onNewChatClicked,
-        onIconClicked = onIconClicked,
-        conversationViewModel = { conversationViewModel.newConversation() },
-        deleteConversation = { text ->
-            coroutineScope.launch {
-                conversationViewModel.deleteConversation(text)
-            }
-        },
-        deleteMessages = { text ->
-            coroutineScope.launch {
-                conversationViewModel.deleteMessages(text)
-            }
-        },
-        onConversation = { conversationModel: ConversationModel ->
-            coroutineScope.launch { conversationViewModel.onConversation(conversationModel) }
-        },
-        currentConversationState = conversationViewModel.currentConversationState.collectAsState().value,
-        conversationState = conversationViewModel.conversationsState.collectAsState().value
-    )
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        AppDrawerIn(
+            onChatClicked = onChatClicked,
+            onNewChatClicked = onNewChatClicked,
+            onIconClicked = onIconClicked,
+            conversationViewModel = { conversationViewModel.newConversation() },
+            deleteConversation = { text ->
+                coroutineScope.launch {
+                    conversationViewModel.deleteConversation(text)
+                }
+            },
+            deleteMessages = { text ->
+                coroutineScope.launch {
+                    conversationViewModel.deleteMessages(text)
+                }
+            },
+            onConversation = { conversationModel: ConversationModel ->
+                coroutineScope.launch { conversationViewModel.onConversation(conversationModel) }
+            },
+            currentConversationState = conversationViewModel.currentConversationState.collectAsState().value,
+            conversationState = conversationViewModel.conversationsState.collectAsState().value
+        )
+    }
 }
 
 
@@ -113,8 +123,8 @@ private fun AppDrawerIn(
         Spacer(Modifier.windowInsetsTopHeight(WindowInsets.statusBars))
         DrawerHeader(clickAction = onIconClicked)
         DividerItem()
-        DrawerItemHeader("Chats")
-        ChatItem("New Chat", Icons.Outlined.AddComment, false) {
+        DrawerItemHeader(stringResource(id = R.string.text_chats))
+        ChatItem(stringResource(id = R.string.text_new_chat), Icons.Outlined.AddComment, false) {
             onNewChatClicked()
             conversationViewModel()
         }
@@ -135,7 +145,7 @@ private fun AppDrawerIn(
         ) { onChatClicked("Settings") }
         ProfileItem(
             stringResource(id = R.string.author_name),
-            R.drawable.icon_github,
+            Icons.Filled.Person,
         ) {
             UrlLauncher().openUrl(context = context, urlToGithub)
         }
@@ -173,24 +183,24 @@ private fun DrawerHeader(
                     stringResource(id = R.string.powered_by),
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Normal,
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.tertiary
                 )
             }
         }
         // This used to shuffle in between dark and light themes
         // It can be enabled later once UI gets stable for specific themes
-        /*IconButton(
+        IconButton(
             onClick = {
                 clickAction.invoke()
             },
         ) {
             Icon(
-                Icons.Filled.WbSunny,
-                "backIcon",
-                modifier = Modifier.size(26.dp),
-                tint = MaterialTheme.colorScheme.primary,
+                imageVector = Icons.Filled.WbSunny,
+                contentDescription = stringResource(id = R.string.cd_toggle_theme),
+                modifier = Modifier.size(24.dp),
+                tint = MaterialTheme.colorScheme.onTertiary,
             )
-        }*/
+        }
     }
 }
 
@@ -244,7 +254,7 @@ private fun DrawerItemHeader(text: String) {
         Text(
             text,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.tertiary
         )
     }
 }
@@ -272,29 +282,25 @@ private fun ChatItem(
         verticalAlignment = CenterVertically
     ) {
         val iconTint = if (selected) {
-            Color.White
+            iconColorDark
         } else {
-            Color.White
+            MaterialTheme.colorScheme.onTertiary
         }
         Icon(
             icon,
             tint = iconTint,
             modifier = Modifier
                 .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
-                .size(25.dp),
+                .size(24.dp),
             contentDescription = null,
         )
         Text(
             text,
             style = MaterialTheme.typography.bodyMedium,
-            color = if (selected) {
-                Color.White
-            } else {
-                Color.White
-            },
+            color = MaterialTheme.colorScheme.tertiary,
             modifier = Modifier.padding(start = 12.dp),
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
+            overflow = TextOverflow.Ellipsis
         )
     }
 }
@@ -308,7 +314,7 @@ private fun RecycleChatItem(
     onDeleteClicked: () -> Unit
 ) {
     val background = if (selected) {
-        Modifier.background(Blue150)
+        Modifier.background(primary)
     } else {
         Modifier
     }
@@ -323,13 +329,13 @@ private fun RecycleChatItem(
         verticalAlignment = CenterVertically
     ) {
         val iconTint = if (selected) {
-            MaterialTheme.colorScheme.primary
+            iconColorDark
         } else {
-            MaterialTheme.colorScheme.onSurfaceVariant
+            MaterialTheme.colorScheme.onTertiary
         }
         Icon(
             icon,
-            tint = Color.White,
+            tint = iconTint,
             modifier = Modifier
                 .padding(start = 16.dp)
                 .size(24.dp),
@@ -339,9 +345,9 @@ private fun RecycleChatItem(
             text,
             style = MaterialTheme.typography.bodyMedium,
             color = if (selected) {
-                Color.White
+                textColorDark
             } else {
-                Color.White
+                MaterialTheme.colorScheme.tertiary
             },
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
@@ -352,11 +358,7 @@ private fun RecycleChatItem(
         Icon(
             imageVector = Icons.Filled.Delete,
             contentDescription = stringResource(id = R.string.cd_delete_chat),
-            tint = if (selected) {
-                Color.White
-            } else {
-                Color.White
-            },
+            tint = iconTint,
             modifier = Modifier
                 .padding(end = 16.dp)
                 .size(24.dp)
@@ -366,7 +368,11 @@ private fun RecycleChatItem(
 }
 
 @Composable
-private fun ProfileItem(text: String, imageId: Int, onProfileClicked: () -> Unit) {
+private fun ProfileItem(
+    text: String,
+    icon: ImageVector = Icons.Filled.Edit,
+    onProfileClicked: () -> Unit
+) {
     Row(
         modifier = Modifier
             .height(56.dp)
@@ -379,16 +385,18 @@ private fun ProfileItem(text: String, imageId: Int, onProfileClicked: () -> Unit
         val paddingSizeModifier = Modifier
             .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
             .size(24.dp)
-        Image(
-            painter = painterResource(imageId),
-            modifier = paddingSizeModifier.then(Modifier.clip(CircleShape)),
-            contentScale = ContentScale.Crop,
-            contentDescription = null
+        Icon(
+            icon,
+            tint = MaterialTheme.colorScheme.onTertiary,
+            modifier = Modifier
+                .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
+                .size(24.dp),
+            contentDescription = null,
         )
         Text(
             text,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface,
+            color = MaterialTheme.colorScheme.tertiary,
             modifier = Modifier.padding(start = 12.dp)
         )
     }

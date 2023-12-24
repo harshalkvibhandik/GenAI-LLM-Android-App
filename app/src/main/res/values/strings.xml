@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">GenAI LLM</string>
     <string name="powered_by">Powered by Azure OpenAI Services</string>
+    <string name="cd_toggle_theme">Toggle Theme</string>
+    <string name="text_chats">Chats</string>
+    <string name="text_new_chat">New Chat</string>
     <string name="settings">Settings</string>
     <string name="author_name">Harshal Vibhandik (author)</string>
     <string name="start_chatting">Start chatting</string>
@@ -10,4 +13,5 @@
     <string name="fab_stop_generating">Stop Generating</string>
     <string name="cd_stop_generating">Stop Generating</string>
     <string name="cd_delete_chat">Delete Chat</string>
+    <string name="ai_generated_content_warning">AI-generated content may be incorrect</string>
 </resources>

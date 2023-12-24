@@ -2,11 +2,17 @@ package com.race2innovate.genai.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Blue225 = Color(0xFF35B0E4)
-val Blue150 = Color(0xFF105498)
+val primary = Color(0xFF105498)
+val secondary = Color(0xFF35B0E4)
+val primaryContainer = Color(0xFF8DDDD8)
 
-val BackGroundColor = Color(0xFF14171A)
-val BackGroundMessageHuman = Color(0xFFE2F0E9)
-val BackGroundMessageGPT = Color(0xFF22252A)
-val ColorTextHuman = Color(0xFF3D3D4E)
-val ColorTextGPT = Color(0xFFFFFFF2)
+val backgroundDark = Color(0xFF161616)
+val backgroundLight = Color(0xFFF5F1EB)
+val messageBackgroundHumanLight = Color(0xFF8DDDD8)
+val messageBackgroundHumanDark = Color(0xFF0E6DBE)
+val messageBackgroundGPTLight = Color(0xFFFFFFFF)
+val messageBackgroundGPTDark = Color(0xFF363636)
+val textColorLight = Color(0xFF272727)
+val textColorDark = Color(0xFFCDCECF)
+val iconColorLight = Color(0xFF272727)
+val iconColorDark = Color(0xFFCDCECF)

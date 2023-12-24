@@ -16,33 +16,29 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 
 private val darkColorScheme = darkColorScheme(
-    primary = Blue150,
-    secondary = Blue225,
-    tertiary = Blue150,
-    background = BackGroundColor,
-    surface = Blue150,
+    primary = primary,
+    secondary = secondary,
+    tertiary = textColorDark,
+    onTertiary = iconColorDark,
+    background = backgroundDark,
+    surface = messageBackgroundHumanDark,
+    surfaceVariant = messageBackgroundGPTDark,
+    primaryContainer = primaryContainer
 )
 
 private val lightColorScheme = lightColorScheme(
-    primary = Blue150,
-    secondary = Blue225,
-    tertiary = Blue150,
-    background = BackGroundColor,
-    surface = BackGroundColor,
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = primary,
+    secondary = secondary,
+    tertiary = textColorLight,
+    onTertiary = iconColorLight,
+    background = backgroundLight,
+    surface = messageBackgroundHumanLight,
+    surfaceVariant = messageBackgroundGPTLight,
+    primaryContainer = primaryContainer
 )
 
 @Composable
-fun ChatGPTLiteTheme(
+fun GenAILLMTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,

@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.race2innovate.genai.ui.conversations.ConversationViewModel
-import com.race2innovate.genai.ui.theme.BackGroundColor
+import com.race2innovate.genai.ui.theme.backgroundDark
 import kotlinx.coroutines.launch
 
 //import androidx.compose.material3.ModalDrawerSheet
@@ -31,7 +31,7 @@ fun AppScaffold(
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet(drawerContainerColor = BackGroundColor) {
+            ModalDrawerSheet(drawerContainerColor = backgroundDark) {
                 AppDrawer(
                     onChatClicked = onChatClicked,
                     onNewChatClicked = onNewChatClicked,
