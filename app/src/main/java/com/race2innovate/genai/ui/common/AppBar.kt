@@ -25,8 +25,7 @@ import com.race2innovate.genai.ui.theme.backgroundDark
 fun AppBar(onClickMenu: () -> Unit) {
     Surface(
         shadowElevation = 4.dp,
-        tonalElevation = 0.dp,
-        color = MaterialTheme.colorScheme.background
+        tonalElevation = 0.dp
     ) {
         CenterAlignedTopAppBar(
             title = {

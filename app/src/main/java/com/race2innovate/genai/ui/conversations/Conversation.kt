@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -49,6 +50,7 @@ fun Conversation() {
                         .weight(1f)
                         .padding(start = 16.dp, end = 16.dp)
                 )
+                Divider()
                 TextInput()
             }
         }
@@ -114,7 +116,6 @@ fun MessageList(
                         Column {
                             MessageCard(
                                 message = messages[index],
-                                isLast = index == messages.size - 1,
                                 isHuman = true
                             )
                             MessageCard(message = messages[index])
